@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RELIA</title>
+    <style>
+        @font-face {
+            font-family: 'Pattanakarn';
+            src: url('fonnts.com-Pattanakarn_Regular.ttf') format('truetype');
+        }
+  
+        body {
+            font-family: 'Pattanakarn', sans-serif;
+            margin: 0 auto; /* Centraliza o conteúdo na página */
+            padding: 20px; /* Margem interna para dar espaço */
+            max-width: 1200px; /* Define uma largura máxima para o conteúdo */
+            line-height: 1.6em; /* Melhora a legibilidade */
+        }
+
+        header {
+            background: #FFFFFF;
+            color: #278de9;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Espaço entre logo e nav */
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-left img {
+            height: 100px;
+            margin-right: 10px;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: #278de9;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .language-switch {
+            color: #278de9;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 1rem; /* Espaço antes das funcionalidades */
+        }
+
+        .language-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-btn {
+            background-color: #ffffff;
+            color: #278de9;
+            border: none;
+            font-weight: bold;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            order: -1; /* Move o botão para a esquerda */
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            min-width: 100px;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+
+        .dropdown-content a {
+            color: #278de9;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .language-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        select.language-switch {
+            font-family: inherit; /* Herda a fonte do header */
+            font-size: 1rem; /* Ajusta o tamanho da fonte */
+            color: #278de9; /* Mantém a cor */
+            border: none; /* Remove borda extra */
+            background: none; /* Remove fundo extra */
+            cursor: pointer;
+        }
+
+        select.language-switch:focus {
+            outline: none; /* Remove o contorno ao focar */
+        }
+
+        .container {
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        .text-box {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin-top: 30px;
+            margin-left: 1rem;
+            margin-right: 1rem;
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: 10px;
+            background-color: #50a1eb;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .text-box img {
+            width: 100%;
+            max-width: 300px; /* Limita o tamanho máximo */
+            margin: 0 auto; /* Centraliza em dispositivos menores */
+        }
+
+        .text-box h1 {
+            color: #ffffff;
+            text-align: center;
+            font-size: 45px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1em;
+        }
+        
+        .list-container {
+    display: flex;
+    justify-content: center; /* Centraliza a lista horizontalmente */
+    align-items: center;     /* Centraliza a lista verticalmente, se necessário */
+          /* Para garantir que a lista fique no meio da página */
+}        
+ol {
+    padding: 0;
+    margin: 0;
+    max-width: 700px;
+    position: relative;
+}
+
+ol::before {
+    content: '';
+    width: 0.5rem;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 8%;
+    background: #50a1eb;
+    z-index: -1;
+}
+
+li {
+    padding: 0.5rem 1.5rem 1rem;
+    border-radius: 1.5rem;
+    background:#62a7d9;
+}
+
+li + li {
+    margin-top: 1rem;
+}
+
+::marker {
+    font-weight: 600;
+    color:  #278de9;
+    font-size: 1.8rem;
+}
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            text-align: justify;
+        }
+
+        .feature {
+            flex: 1;
+            min-width: 300px;
+            border: 1px solid #ccc;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .tec {
+            background-color: #50a1eb;
+            padding: 20px;
+        }
+
+        .extras-container {
+            display: flex; /* Exibe os elementos como um layout horizontal */
+            gap: 2rem; /* Espaçamento entre os elementos */
+            align-items: flex-start; /* Alinha os elementos ao topo */
+        }
+
+        .infographic, .podcast {
+            margin: 2rem 0;
+            text-align: center;
+            flex: 1; /* Os elementos dividem o espaço disponível */
+            max-width: 45%; /* Limita a largura máxima de cada seção */
+        }
+
+        .container img {
+            max-width: 20%;
+            border: 2px solid #278de9;
+            padding: 10px;
+            cursor: zoom-in;
+            transition: transform 2s ease;
+        }
+
+        input[type=checkbox] {
+            display: none;
+        }
+
+        input[type=checkbox]:checked ~ label > img {
+            transform: scale(3.0);
+            cursor: zoom-out;
+        }
+
+        .podcast audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem; /* Define o tamanho da fonte */
+            margin-bottom: 2rem; /* Espaço entre o título e o resto */
+            color: #278de9;
+        }
+    </style>
+</head>
+<header>
+    <div class="header-left">
+        <a href="index.html">
+            <img src="https://raw.githubusercontent.com/crisgomes18/html/refs/heads/main/RELIA.png" alt="Logótipo RELIA">
+
+        </a>
+    </div>
+    <nav>
+        <a href="#features">Funcionalidades</a>
+        <a href="#explora">Recursos Extras</a>
+    </nav>
+    <div>
+        <select class="language-switch" onchange="location = this.value;">
+            <option value="index.html">PT</option>
+            <option value="index_en.html">EN</option>
+        </select>
+    </div>
+</header>
+<body>
+
+
+    <div class="text-box">
+        <div>
+            <h1>O TEU ALIADO NA LEITURA</h1>
+            <p>Descobre a RELIA, a aplicação que transforma a forma como te relacionas com a literatura, tornando-a mais acessível, envolvente e inspiradora. Ideal para estudantes do ensino secundário e universitário.</p>
+        </div>
+        <img src="https://raw.githubusercontent.com/crisgomes18/html/refs/heads/main/ler.png" alt="Imagem RELIA">
+    </div>
+
+    <div class="text">
+        <div>
+            &nbsp
+            <h1>Revoluciona a forma como lês e exploras literatura!</h1>
+               <p>A nossa app foi criada para ajudar estudantes a superar as dificuldades comuns na leitura de obras literárias. Embora estas obras sejam ricas em significado, muitas vezes parecem intimidantes. A aplicação organiza a informação de forma simples, auxiliando na leitura.
+                </p>
+                &nbsp
+                <h2>Como funciona a RELIA?</h2>
+            <p>Desenvolvida para democratizar e potencializar o prazer da leitura atenta, a RELIA segue um framework em três etapas:</p>
+                <div class="list-container">
+                <section id="como-funciona">
+                   
+                    <ol>
+                        <li><b>Contextualização: </b>Explora os aspetos iniciais da obra, como o contexto histórico e os elementos-chave da narrativa, proporcionando uma compreensão sólida do material.</li>
+                        <li><b>Análise e Interpretação:</b> Aprofunda-te na reflexão crítica, analisando os principais temas, personagens e símbolos, enquanto constróis conexões conceituais relevantes.</li>
+                        <li><b>Expandir e Conectar: </b>Relaciona as ideias da obra com outros livros, contextos e temas que despertam o teu interesse, ampliando a tua compreensão e enriquecendo a tua leitura.</li>
+                    </ol>
+                </section>
+            </div>
+                
+                <section id="features">
+                    &nbsp
+                    <h2>FUNCIONALIDADES</h2>
+                    <p>Algumas das funcionalidades incluem:</p>
+                    <div class="features">
+                        <div class="feature">
+                            <h3>Chat Interativo</h3>
+                            <p>Conversa diretamente com a aplicação e obtém respostas instantâneas para as tuas dúvidas.</p>
+                        </div>
+                        <div class="feature">
+                            <h3>Quizzes e Relatório de Resultados</h3>
+                            <p>Testa os teus conhecimentos com quizzes e acompanha o teu progresso através de relatórios personalizados!</p>
+                        </div>
+                        <div class="feature">
+                            <h3>Conteúdo Específico</h3>
+                            <p>Explora uma variedade de conteúdos específicos sobre a obra que estás a estudar, incluindo contexto histórico, análise de personagens e muito mais!
+                            </p>
+                        </div>
+                    
+                        <div class="tec">  
+                            <h2>Fácil de usar, para todos os estudantes</h2>
+                            <p>Para além disto, a RELIA destaca-se pela interface intuitiva, permitindo uma navegação acessível para todos os utilizadores. Qualquer estudante mais velho consegue navegar facilmente pela aplicação, o que torna a experiência de uso bastante familiar. Basta pesquisar pela obra que desejas e começar a estudar!</p>
+
+                        </div>
+                        <div>
+                            <h2>Uma Nova Abordagem à Literatura!</h2>
+                            <p>A RELIA representa uma revolução na forma como os estudantes e mesmo educadores se aproximam da literatura. Combinando tecnologia avançada e gamificação, 
+                                 <b>a RELIA é muito mais do que uma aplicação – é o teu guia literário. </b></p>
+                               <p>A aplicação não só facilita a compreensão das obras literárias, mas também desperta um interesse genuíno pela leitura.</p> 
+                               
+                            </section>
+                        </div>
+    </div>
+
+<div>
+    <h2>Descobre a RELIA hoje!</h2>
+    <p>Não percas a oportunidade de transformar a tua experiência de leitura.
+        Experimenta já e vê por ti mesmo como pode ser mais interessante do que imaginas!
+        </p>
+    </div>
+
+<section id="explora">
+    &nbsp <h1>Explora mais!</h1>
+    <p><b>Explora ainda mais sobre a RELIA através da nossa infografia e do nosso podcast. </b> </p>
+</div>
+
+<div class="extras-container">
+    <section class="infographic">
+        <h2>Infografia</h2>
+        <p>Explora a nossa infografia para descobrir como as funcionalidades da RELIA podem transformar a tua experiência com a app.</p>
+        <div class="container">
+            <input type="checkbox" id="zoom_img">
+            <label for="zoom_img">
+                <img src="https://raw.githubusercontent.com/crisgomes18/html/refs/heads/main/Infografia_PT.png" alt="Infografia RELIA">
+            </label>
+        </div>        
+    </section>
+    <section class="podcast">
+        <h2>Podcast</h2>
+        <p>Ouve o nosso podcast para descobrir como foi a experiência de explorar o livro 'O Monte dos Vendavais'!</p>
+        <audio controls>
+            <source src="https://raw.githubusercontent.com/crisgomes18/html/refs/heads/main/relia_pt.MP3" type="audio/mpeg">
+        </audio>
+    </section>
+</div>
+
+
+    <footer>
+        <p>&copy; 2024 RELIA. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
+
